@@ -30,12 +30,32 @@ public class DAO {
 		
 	}
 	
+	public String getproducts(String storeId) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("table", "products");
+		params.put("columns", new String[] {"*"});
+		
+		HashMap<String, String> whereCondition = new HashMap<String, String>();
+		whereCondition.put("store", storeId);
+		
+		params.put("where", whereCondition);
+		
+		String data = DataAPIUtil.selectDataFromTable(params);
+		
+		return data;
+		
+	}
+	
+	
+	
 	//test
 	
 	public static void main(String[] args) {
 		
 		DAO dao = new DAO();
-		dao.getStores("Flower");
+		String data = dao.getproducts("2");
+		System.out.println(data);
 		
 	}
 
